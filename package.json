@@ -1,0 +1,21 @@
+{
+  "name": "xpoz-zapier",
+  "version": "1.0.0",
+  "description": "Xpoz integration for Zapier — social media intelligence for Twitter/X, Instagram, Reddit, and TikTok",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --testTimeout 10000"
+  },
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
+  },
+  "dependencies": {
+    "zapier-platform-core": "19.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nock": "^13.5.0"
+  },
+  "private": true
+}
