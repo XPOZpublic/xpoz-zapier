@@ -10,7 +10,7 @@ const perform = async (z, bundle) => {
       limit: 50,
     },
   });
-  return (response.data.data || []).map((post) => ({
+  return (response.data.results || []).map((post) => ({
     ...post,
     id: post.id,
   }));

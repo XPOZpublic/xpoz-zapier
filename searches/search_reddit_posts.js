@@ -11,7 +11,7 @@ const perform = async (z, bundle) => {
       limit: bundle.inputData.limit || 10,
     },
   });
-  return response.data.data || [];
+  return response.data.results || [];
 };
 
 module.exports = {

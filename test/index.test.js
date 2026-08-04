@@ -34,7 +34,7 @@ describe('searches.search_twitter_posts', () => {
       .query((query) => query.q === 'ai agents')
       .reply(200, {
         success: true,
-        data: [{ id: '1', text: 'hello agents' }],
+        results: [{ id: "1", text: "hello agents" }],
       });
 
     const results = await appTester(
@@ -53,7 +53,7 @@ describe('searches.search_reddit_posts', () => {
       .query((query) => query.q === 'xpoz' && query.subreddit === 'marketing')
       .reply(200, {
         success: true,
-        data: [{ id: 'r1', title: 'thread' }],
+        results: [{ id: "r1", title: "thread" }],
       });
 
     const results = await appTester(
@@ -71,7 +71,7 @@ describe('triggers.new_twitter_post', () => {
       .query((query) => query.q === 'brand' && query.sortBy === 'latest')
       .reply(200, {
         success: true,
-        data: [
+        results: [
           { id: '2', text: 'newest' },
           { id: '1', text: 'older' },
         ],
