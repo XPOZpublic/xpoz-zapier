@@ -1,15 +1,22 @@
 'use strict';
 
 const perform = async (z, bundle) => {
+  const params = {
+    q: bundle.inputData.query,
+    limit: bundle.inputData.limit || 10,
+  };
+  if (bundle.inputData.since) {
+    params.since = bundle.inputData.since;
+  }
+  if (bundle.inputData.until) {
+    params.until = bundle.inputData.until;
+  }
+  if (bundle.inputData.lang) {
+    params.lang = bundle.inputData.lang;
+  }
   const response = await z.request({
     url: 'https://api.xpoz.ai/api/data/twitter/posts',
-    params: {
-      q: bundle.inputData.query,
-      since: bundle.inputData.since,
-      until: bundle.inputData.until,
-      lang: bundle.inputData.lang,
-      limit: bundle.inputData.limit || 10,
-    },
+    params,
   });
   return response.data.results || [];
 };

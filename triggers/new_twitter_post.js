@@ -1,14 +1,17 @@
 'use strict';
 
 const perform = async (z, bundle) => {
+  const params = {
+    q: bundle.inputData.query,
+    sortBy: 'latest',
+    limit: 50,
+  };
+  if (bundle.inputData.lang) {
+    params.lang = bundle.inputData.lang;
+  }
   const response = await z.request({
     url: 'https://api.xpoz.ai/api/data/twitter/posts',
-    params: {
-      q: bundle.inputData.query,
-      lang: bundle.inputData.lang,
-      sortBy: 'latest',
-      limit: 50,
-    },
+    params,
   });
   return (response.data.results || []).map((post) => ({
     ...post,

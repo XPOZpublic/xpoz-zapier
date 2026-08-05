@@ -1,6 +1,6 @@
 {
   "name": "xpoz-zapier",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Xpoz integration for Zapier — social media intelligence for Twitter/X, Instagram, Reddit, and TikTok",
   "main": "index.js",
   "scripts": {

@@ -47,6 +47,31 @@ describe('searches.search_twitter_posts', () => {
 });
 
 describe('searches.search_reddit_posts', () => {
+  it('omits blank optional fields from the request', async () => {
+    nock('https://api.xpoz.ai')
+      .get('/api/data/reddit/posts')
+      .query(
+        (query) =>
+          query.q === 'social media api' &&
+          !('subreddit' in query) &&
+          !('since' in query) &&
+          !('until' in query),
+      )
+      .reply(200, {
+        success: true,
+        results: [{ id: "r2", title: "clean params" }],
+      });
+
+    const results = await appTester(
+      App.searches.search_reddit_posts.operation.perform,
+      {
+        authData: AUTH,
+        inputData: { query: 'social media api', subreddit: '', since: '', until: '', limit: 3 },
+      },
+    );
+    expect(results).toHaveLength(1);
+  });
+
   it('passes the subreddit filter', async () => {
     nock('https://api.xpoz.ai')
       .get('/api/data/reddit/posts')

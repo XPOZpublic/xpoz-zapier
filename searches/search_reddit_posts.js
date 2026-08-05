@@ -1,15 +1,22 @@
 'use strict';
 
 const perform = async (z, bundle) => {
+  const params = {
+    q: bundle.inputData.query,
+    limit: bundle.inputData.limit || 10,
+  };
+  if (bundle.inputData.subreddit) {
+    params.subreddit = bundle.inputData.subreddit;
+  }
+  if (bundle.inputData.since) {
+    params.since = bundle.inputData.since;
+  }
+  if (bundle.inputData.until) {
+    params.until = bundle.inputData.until;
+  }
   const response = await z.request({
     url: 'https://api.xpoz.ai/api/data/reddit/posts',
-    params: {
-      q: bundle.inputData.query,
-      subreddit: bundle.inputData.subreddit,
-      since: bundle.inputData.since,
-      until: bundle.inputData.until,
-      limit: bundle.inputData.limit || 10,
-    },
+    params,
   });
   return response.data.results || [];
 };
